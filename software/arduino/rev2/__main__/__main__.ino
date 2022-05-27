@@ -207,7 +207,7 @@ void lcd_print_sensor()
   {
     sensor1.ppb_prev = sensor1.ppb_curr;
     lcd.setCursor(4, 0);
-    lcd.print("S" + String(d1) + "." + String(d2) + String(d3));
+    lcd.print("S" + String(d1) + "." + String(d2) + String(d3) + " ");
   }
 }
 
@@ -350,7 +350,7 @@ void pot_read()
 // GEN ------------------------------------------------------------------------------------
 // ----------------------------------------------------------------------------------------
 void gen_manager()
-{
+{ 
   if (counter <= 0)
   {
     if (gen_state)
@@ -439,7 +439,9 @@ void loop()
     int countdown_seconds = counter % 60;
 
     lcd.setCursor(10, 0);
-    lcd.print("W");
+    if (gen_state) lcd.print("W");
+    else lcd.print("R");
+    
     if (countdown_minutes < 10) lcd.print(0);
     lcd.print(countdown_minutes);
     lcd.print(":");
